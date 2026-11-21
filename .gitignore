@@ -1,2 +1,8 @@
-.idea/
 .DS_Store
+.env
+*.env
+!example.env
+__pycache__/
+.pytest_cache/
+spark-warehouse/
+sort_experiment/

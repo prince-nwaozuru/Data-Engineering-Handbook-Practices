@@ -1,21 +1,16 @@
-# Data Engineering Bootcamp Practice
+# Data Engineering Bootcamp: Homework Solutions
 
-My working copy of the free **DataExpert.io Data Engineering Bootcamp** materials, which I used to practise data modelling, Spark, Flink/Kafka streaming and data quality.
+My solutions to the homework assignments from the free [DataExpert.io Data Engineering Bootcamp](https://github.com/DataExpert-io/data-engineer-handbook). The assignment prompts and datasets belong to DataExpert.io; this repo contains only the solutions.
 
-> **Credit:** The course outline, lecture labs, datasets and homework prompts in `materials/` were created by [DataExpert.io](https://www.dataexpert.io) (Zach Wilson) and come from the public [Data Engineer Handbook](https://github.com/DataExpert-io/data-engineer-handbook) repository. They are not my original work. This repo records my practice with them; the Spark notebooks in `materials/3-spark-fundamentals/notebooks/` include my own runs.
+| Module | What it covers | Stack | Tested |
+|---|---|---|---|
+| [1. Dimensional data modelling](1-dimensional-data-modeling) | Cumulative table design, Type 2 SCD backfill and incremental loads | PostgreSQL | ✅ Run against the bootcamp dataset |
+| [2. Fact data modelling](2-fact-data-modeling) | Deduplication, cumulative date lists, bitmask `datelist_int`, monthly reduced fact table | PostgreSQL | ✅ Run day by day for January 2023 |
+| [3. Spark fundamentals](3-spark-fundamentals) | Bucket joins, explicit broadcast joins, `sortWithinPartitions` experiment, PySpark jobs with unit tests | PySpark, pytest, chispa | Written for the course's Spark setup |
+| [4. Apache Flink](4-apache-flink) | Session windows over a Kafka stream (5-minute gap), per-host analysis | PyFlink, Kafka, PostgreSQL | Written for the course's Flink setup |
+| [4. Applying analytical patterns](4-applying-analytical-patterns) | State change tracking, `GROUPING SETS`, rolling windows, gaps and islands | PostgreSQL | ✅ Run against the bootcamp dataset |
+| [6. Data pipeline maintenance](6-data-pipeline-maintenance) | Pipeline ownership, a fair on-call rotation, runbooks for investor-facing pipelines | Markdown | n/a |
 
-## Modules covered
+## Running the SQL
 
-| Module | Topics |
-|---|---|
-| 1. Dimensional data modelling | Cumulative tables, slowly changing dimensions (SCD Type 2), incremental SCD loads, graph data modelling |
-| 2. Fact data modelling | Fact tables, date-list and bitmask patterns, monthly array metrics |
-| 3. Spark fundamentals | PySpark DataFrames, joins, bucketing, partitioning, testing Spark jobs |
-| 4. Apache Flink training | Real-time pipelines with Kafka, PyFlink and PostgreSQL in Docker |
-| 4. Applying analytical patterns | Growth accounting, funnels, window functions |
-| 5. KPIs and experimentation | Metric design and A/B testing |
-| 6. Data impact and pipeline maintenance | Data visualisation, runbooks and on-call for pipelines |
-
-## Running the labs
-
-Each module has its own README with setup steps. Most modules run locally with Docker Compose: copy `example.env` to `.env` and run `make up` or `docker compose up`.
+The SQL modules use the bootcamp's Postgres dataset. Follow the [module 1 setup](https://github.com/DataExpert-io/data-engineer-handbook/tree/main/intermediate-bootcamp/materials/1-dimensional-data-modeling) to start Postgres and restore `data.dump`, then run each module's files in numbered order.
